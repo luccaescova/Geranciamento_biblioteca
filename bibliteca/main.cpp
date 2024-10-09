@@ -38,7 +38,7 @@ void cadastro (struct livro livrovec[], int conta)
                                 cout << "Limite atingido !";
                                 return;
                             }
-
+                conta++;
                 cout << "Digite o Titulo: ";
                 cin.ignore();
                 cin.getline(livrovec[conta].titulo,50);
@@ -48,14 +48,8 @@ void cadastro (struct livro livrovec[], int conta)
                 cin >> livrovec[conta].paginas;
                 cout << "Digite o ano de publicacao: ";
                 cin >> livrovec[conta].ano_pub;
-               if (livrovec[conta].quant_esto == 0)
-                cout << "Digite a quantidade deste livro no estoque: ";
-                cin >> livrovec[conta].quant_esto;
-
-
-
-            return;
-
+                cout<< "Livro Cadastrado com sucesso !"<<endl;
+                conta++;
 
 }
 
@@ -117,7 +111,7 @@ int main()
 
     if (op == 1)
     {
-        conta++;
+
         cadastro(livrovec, conta);
     }
 
