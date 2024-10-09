@@ -11,54 +11,55 @@ struct livro
     int quant_esto = 0;
     char nomes [100];
 };
-int cont = 0;
+
+int conta = 0;
 
 //Terminar escopo
-void cadastro (struct livro livrovec[], int cont)
+void cadastro (struct livro livrovec[], int conta)
 {
-    int id = 0;
-    char op[1];
+
 
         cout << "Digite o ID: ";
-        cin >> livrovec[cont].id;
-        for (int i = 0; i >=cont; i++)
+        cin >> livrovec[conta].id;
+        for (int i = 0; i > conta; i++)
         {
-            if (livrovec[cont].id == livrovec[i].id)
+            if (livrovec[conta].id == livrovec[i].id)
                 {
-                        cout << "Digite a quantidade deste livro no estoque: ";
-                        cin >> livrovec[cont].quant_esto;
-                        if (livrovec[i].quant_esto > 10)
+                    cout << "Livro ja cadastrado"<<endl;
+                        return;
+                }
+
+        }
+
+                cout << "Digite a quantidade deste livro no estoque: ";
+                        cin >> livrovec[conta].quant_esto;
+                        if (livrovec[conta].quant_esto > 10)
                             {
                                 cout << "Limite atingido !";
                                 return;
                             }
 
-
-
-                }
-
                 cout << "Digite o Titulo: ";
                 cin.ignore();
-                cin.getline(livrovec[cont].titulo,50);
+                cin.getline(livrovec[conta].titulo,50);
                 cout << "Digite o Autor: ";
-                cin.getline(livrovec[cont].autor,50);
+                cin.getline(livrovec[conta].autor,50);
                 cout << "Digite o numero de paginas : ";
-                cin >> livrovec[cont].paginas;
+                cin >> livrovec[conta].paginas;
                 cout << "Digite o ano de publicacao: ";
-                cin >> livrovec[cont].ano_pub;
-               if (livrovec[cont].quant_esto == 0)
+                cin >> livrovec[conta].ano_pub;
+               if (livrovec[conta].quant_esto == 0)
                 cout << "Digite a quantidade deste livro no estoque: ";
-                cin >> livrovec[cont].quant_esto;
+                cin >> livrovec[conta].quant_esto;
 
 
 
             return;
-        }
 
 
 }
 
-void consulta (struct livro livrovec[], int cont)
+void consulta (struct livro livrovec[], int conta)
 
 {
 
@@ -67,14 +68,14 @@ void consulta (struct livro livrovec[], int cont)
 }
 
 
-void emprestimo (struct livro livrovec[], int cont)
+void emprestimo (struct livro livrovec[], int conta)
 {
-    cout << "Agua mole pedra dura, tanto bate até q murta"<< endl;
+    cout << "Agua mole pedra dura, tanto bate atï¿½ q murta"<< endl;
 
 
 }
 
-void devolucao (struct livro livrovec[], int cont)
+void devolucao (struct livro livrovec[], int conta)
 {
 
     cout << "Tio paulo, acorda tio paulo, voce precisa assinar "<< endl;
@@ -82,7 +83,7 @@ void devolucao (struct livro livrovec[], int cont)
 
 }
 
-void remocao (struct livro livrovec[], int cont)
+void remocao (struct livro livrovec[], int conta)
 {
 
     cout << "To nem ai, to nem ai "<< endl;
@@ -93,7 +94,7 @@ void remocao (struct livro livrovec[], int cont)
 int main()
 {
 
-    struct livro livrovec[cont];
+    struct livro livrovec[conta];
     int op  =0;
     while (op !=6 ){
         cout<< "------------Seja Bem Vindo-----------"<< endl;
@@ -116,12 +117,13 @@ int main()
 
     if (op == 1)
     {
-        cadastro(livrovec, cont);
+        conta++;
+        cadastro(livrovec, conta);
     }
 
     if (op == 2)
     {
-        if (cont == 0){
+        if (conta == 0){
 
             cout << "Nao ha livros cadastrados"<< endl;
             continue;
@@ -129,24 +131,24 @@ int main()
         }
 
         else{
-            consulta(livrovec, cont);
+            consulta(livrovec, conta);
 
         }
     }
 
     if (op ==3)
     {
-        emprestimo(livrovec, cont);
+        emprestimo(livrovec, conta);
     }
 
     if (op ==4)
     {
-        devolucao(livrovec, cont);
+        devolucao(livrovec, conta);
     }
 
     if (op ==5)
     {
-        remocao(livrovec, cont);
+        remocao(livrovec, conta);
     }
 
 
