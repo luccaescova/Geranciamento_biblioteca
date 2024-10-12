@@ -14,50 +14,86 @@ struct livro
 
 int conta = 0;
 
-//Terminar escopo
-void cadastro (struct livro livrovec[], int conta)
+void cadastro(struct livro livrovec[], int &conta)
 {
 
 
-        cout << "Digite o ID: ";
-        cin >> livrovec[conta].id;
-        for (int i = 0; i > conta; i++)
-        {
-            if (livrovec[conta].id == livrovec[i].id)
-                {
-                    cout << "Livro ja cadastrado"<<endl;
-                        return;
-                }
-
+    cout << "Digite o ID: ";
+    cin >> livrovec[conta].id;
+    for (int i = 0; i < conta; i++) {
+        if (livrovec[conta].id == livrovec[i].id) {
+            cout << "Livro já cadastrado" << endl;
+            return;
         }
+    }
 
-                cout << "Digite a quantidade deste livro no estoque: ";
-                        cin >> livrovec[conta].quant_esto;
-                        if (livrovec[conta].quant_esto > 10)
-                            {
-                                cout << "Limite atingido !";
-                                return;
-                            }
-                conta++;
-                cout << "Digite o Titulo: ";
-                cin.ignore();
-                cin.getline(livrovec[conta].titulo,50);
-                cout << "Digite o Autor: ";
-                cin.getline(livrovec[conta].autor,50);
-                cout << "Digite o numero de paginas : ";
-                cin >> livrovec[conta].paginas;
-                cout << "Digite o ano de publicacao: ";
-                cin >> livrovec[conta].ano_pub;
-                cout<< "Livro Cadastrado com sucesso !"<<endl;
-                conta++;
+    cout << "Digite a quantidade deste livro no estoque: ";
+    cin >> livrovec[conta].quant_esto;
+
+    if (livrovec[conta].quant_esto > 10) {
+        cout << "Limite atingido!" << endl;
+        return;
+    }
+
+    cout << "Digite o Titulo: ";
+    cin.ignore();
+    cin.getline(livrovec[conta].titulo, 50);
+    cout << "Digite o Autor: ";
+    cin.getline(livrovec[conta].autor, 50);
+    cout << "Digite o numero de paginas: ";
+    cin >> livrovec[conta].paginas;
+    cout << "Digite o ano de publicacao: ";
+    cin >> livrovec[conta].ano_pub;
+
+    conta++;
+    cout << "Livro cadastrado com sucesso!" << endl;
 
 }
 
 void consulta (struct livro livrovec[], int conta)
 
 {
+    int id = 0;
+    int op = 0;
+    cout << ""<< endl;
+    cout << ""<< endl;
+    cout << "O que você gostaria de fazer ? " << endl;
+    cout << ""<< endl;
+    cout << ""<< endl;
+    cout << ""<< endl;
+    cout << "1. Listar todos os livros \n"
+            "2. Buscar livro"<< endl;
+    cout << " "<<endl;
+    cout << "Digite aqui: ";
+    cin >> op;
 
-    cout << "Funcionou"<< endl;
+    if (op == 1)
+    {
+        for ( int i; i < conta; i++)
+        {
+
+            cout << "ID: " << livrovec[i].id<<endl;
+            cout << "Livro: " << livrovec[i].titulo<<endl;
+            cout << "Autor: " << livrovec[i].autor<<endl;
+            cout << "Publicacao: "<< livrovec[i].ano_pub<<endl;
+            cout << "Quantidade no estoque: "<< livrovec[i].quant_esto<<endl;
+            cout << " " << endl;
+        }
+        return;
+    }
+
+    else if (op == 2)
+    {
+        cout << "Digite o ID: ";
+        cin >> id;
+        for (int i = 0; i < conta; i++) {
+            if (id == livrovec[i].id) {
+                cout << "O livro é o: "<< livrovec[i].titulo << endl;
+                return;
+            }
+        }
+
+    }
 
 }
 
