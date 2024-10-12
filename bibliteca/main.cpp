@@ -54,12 +54,12 @@ void consulta (struct livro livrovec[], int conta)
 
 {
     char titulo [50];
-    char opid [50];
+    char opid [5];
     int id = 0;
     int op = 0;
     cout << ""<< endl;
     cout << ""<< endl;
-    cout << "O que você gostaria de fazer ? " << endl;
+    cout << "O que voce gostaria de fazer ? " << endl;
     cout << ""<< endl;
     cout << ""<< endl;
     cout << ""<< endl;
@@ -68,6 +68,7 @@ void consulta (struct livro livrovec[], int conta)
     cout << " "<<endl;
     cout << "Digite aqui: ";
     cin >> op;
+    cin.ignore();
 
     if (op == 1)
     {
@@ -87,9 +88,9 @@ void consulta (struct livro livrovec[], int conta)
     else if (op == 2)
     {
         cout << "Pesquisar com ID (S/N): ";
-        cin.getline(opid,1);
+        cin.getline(opid,2);
 
-        if((opid == 'S') && (opid == 's'))
+        if(toupper(opid [0])== 'S')
         {
             cout << "Digite o ID: ";
             cin >> id;
@@ -105,12 +106,14 @@ void consulta (struct livro livrovec[], int conta)
 
 
         }
-        else if ((opid == 'n') && (opid == 'N'))
+        else if (toupper(opid [0])== 'N')
         {
-           cout << "Digite o Nome: ";
-            cin.getline(titulo, 20);
-            for (int i = 0; i < conta; i++) {
-                if (titulo == livrovec[i].titulo) {
+           cout << "Digite o Nome do livro: ";
+            cin.getline(titulo, 50);
+            for (int i = 0; i < conta; i++)
+            {
+                if (titulo == livrovec[i].titulo)
+                {
                     cout << "O livro encontrado !" << endl;
                     return;
                 }
@@ -127,11 +130,31 @@ void consulta (struct livro livrovec[], int conta)
 
 void emprestimo (struct livro livrovec[], int conta)
 {
-    cout << "Agua mole pedra dura, tanto bate at� q murta"<< endl;
+    int id;
+    cout << "Digite o ID: ";
+            cin >> id;
+            cin.ignore();
+            for (int i = 0; i < conta; i++)
+            {
+                if (id == livrovec[i].id)
+                {
+                    if (livrovec[i].quant_esto != 0)
+                    {
+                        cout << "Nome do associado: ";
+                        cin.getline(livrovec[i].nomes, 100);
+                        livrovec[i].quant_esto--;
+                        cout << "Emprestimo realizado com sucesso"<< endl;
+                        return;
+                    }
+                    else
+                    {
+                        cout << "Não há livros no estoque !"<<endl;
+                    }
 
+                }
+            }
 
-}
-
+ }
 void devolucao (struct livro livrovec[], int conta)
 {
 
