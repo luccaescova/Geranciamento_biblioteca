@@ -53,6 +53,8 @@ void cadastro(struct livro livrovec[], int &conta)
 void consulta (struct livro livrovec[], int conta)
 
 {
+    char titulo [50];
+    char opid [50];
     int id = 0;
     int op = 0;
     cout << ""<< endl;
@@ -81,16 +83,41 @@ void consulta (struct livro livrovec[], int conta)
         }
         return;
     }
-
+//arrumar cin das strings
     else if (op == 2)
     {
-        cout << "Digite o ID: ";
-        cin >> id;
-        for (int i = 0; i < conta; i++) {
-            if (id == livrovec[i].id) {
-                cout << "O livro é o: "<< livrovec[i].titulo << endl;
-                return;
+        cout << "Pesquisar com ID (S/N): ";
+        cin.getline(opid,1);
+
+        if((opid == 'S') && (opid == 's'))
+        {
+            cout << "Digite o ID: ";
+            cin >> id;
+            for (int i = 0; i < conta; i++) {
+                if (id == livrovec[i].id) {
+                    cout << "O livro é o: "<< livrovec[i].titulo << endl;
+                    return;
+                }
             }
+
+        cout << "Livro nao encontrado !" << endl;
+        return;
+
+
+        }
+        else if ((opid == 'n') && (opid == 'N'))
+        {
+           cout << "Digite o Nome: ";
+            cin.getline(titulo, 20);
+            for (int i = 0; i < conta; i++) {
+                if (titulo == livrovec[i].titulo) {
+                    cout << "O livro encontrado !" << endl;
+                    return;
+                }
+            }
+
+            cout << "Livro nao encontrado !"<< endl;
+            return;
         }
 
     }
