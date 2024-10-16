@@ -72,7 +72,7 @@ void consulta (struct livro livrovec[], int conta)
 
     if (op == 1)
     {
-        for ( int i; i < conta; i++)
+        for ( int i = 0; i < conta; i++)
         {
 
             cout << "ID: " << livrovec[i].id<<endl;
@@ -148,7 +148,8 @@ void emprestimo (struct livro livrovec[], int conta)
                     }
                     else
                     {
-                        cout << "Não há livros no estoque !"<<endl;
+                        cout << "Nao ha este livro no estoque !"<<endl;
+                        return;
                     }
 
                 }
@@ -158,23 +159,77 @@ void emprestimo (struct livro livrovec[], int conta)
 void devolucao (struct livro livrovec[], int conta)
 {
 
-    cout << "Tio paulo, acorda tio paulo, voce precisa assinar "<< endl;
+ int id;
+    cout << "Digite o ID: ";
+            cin >> id;
+            cin.ignore();
+            for (int i = 0; i < conta; i++)
+            {
+                if (id == livrovec[i].id)
+                {
+                    if (livrovec[i].quant_esto != 0)
+                    {
+                        livrovec[i].quant_esto++;
+                        cout << "Devolucao realizado com sucesso"<< endl;
+                        return;
+                    }
+                    else
+                    {
+                        cout << "Não há livros no estoque !"<<endl;
+                        return;
+                    }
+
+                }
+            }
 
 
 }
 
 void remocao (struct livro livrovec[], int conta)
 {
+    char op [2];
+    int id;
+    cout << "Digite o ID: ";
+    cin >> id;
+    cin.ignore();
+    for (int i = 0; i < conta; i++)
+    {
+        if (id == livrovec[i].id)
+        {
+            cout << "Livro encontrado !"<<endl;
+            cout << "Deseja excluir ? (S/N)";
+            cin.getline(op,2);
 
-    cout << "To nem ai, to nem ai "<< endl;
+            if(toupper(op [0])== 'S')
+            {
+                for (int j = i; j < conta - 1; j++) {
+                    livrovec[j] = livrovec[j + 1]; // Move os livros para a esquerda
+                }
+                conta--; // Diminui o número de livros
+                cout << "Livro removido!";
+                return;
+            }
+            else if (toupper(op [0])== 'N')
+            {
+                cout << "Processo cancelado !"<< endl;
+                return;
+            }
+        }
 
 
+
+
+    }
 }
+
+
+
+
 
 int main()
 {
 
-    struct livro livrovec[conta];
+    struct livro livrovec[100];
     int op  =0;
     while (op !=6 ){
         cout<< "------------Seja Bem Vindo-----------"<< endl;
@@ -203,32 +258,73 @@ int main()
 
     if (op == 2)
     {
-        if (conta == 0){
+        if (conta == 0)
+            {
 
-            cout << "Nao ha livros cadastrados"<< endl;
-            continue;
+                cout << "Nao ha livros cadastrados"<< endl;
+                continue;
 
-        }
+            }
 
-        else{
-            consulta(livrovec, conta);
+        else
+            {
+                consulta(livrovec, conta);
 
-        }
+            }
     }
 
     if (op ==3)
     {
-        emprestimo(livrovec, conta);
+        if (conta == 0)
+            {
+
+                cout << "Nao ha livros cadastrados"<< endl;
+                continue;
+
+            }
+
+        else
+            {
+                emprestimo(livrovec, conta);
+
+            }
+
     }
 
     if (op ==4)
     {
-        devolucao(livrovec, conta);
+        if (conta == 0)
+            {
+
+                cout << "Nao ha livros cadastrados"<< endl;
+                continue;
+
+            }
+
+        else
+            {
+                devolucao(livrovec, conta);
+
+            }
+
     }
 
     if (op ==5)
     {
-        remocao(livrovec, conta);
+        if (conta == 0)
+            {
+
+                cout << "Nao ha livros cadastrados"<< endl;
+                continue;
+
+            }
+
+        else
+            {
+                remocao(livrovec, conta);
+
+            }
+
     }
 
 
